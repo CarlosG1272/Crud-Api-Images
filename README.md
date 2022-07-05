@@ -2,6 +2,8 @@
 
 Api for image storage that I will use to complete and improve different pending projects I have, such as my weather or movies application. 
 This is done through the technologies: 
+
+
 Views: Express-Handlebars
 Back: Express, NodeJS
 DataBase: MongoDB, Cloudinary
