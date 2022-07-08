@@ -3,26 +3,34 @@
   width: 600px;
   height: 300px;
 }
+  .wrap-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  img {
+    width: 20rem;
+    height: auto;
+    margin: 2rem;
+    border-radius: 1rem;
+  }
 </style>
+
 <div class="container">
-    My images of Wheater
-<!-- Slider main container -->
-<div class="swiper">
-  <!-- Additional required wrapper -->
-  <div class="swiper-wrapper">
-    <!-- Slides -->
-    {{#each images}}
-      <img src="{{imgUrl}}" alt="image"  class="swiper-slide p-10"/>
-    {{/each}}
-  </div>
-  <!-- If we need pagination -->
-  <div class="swiper-pagination"></div>
-
-  <!-- If we need navigation buttons -->
-  <div class="swiper-button-prev"></div>
-  <div class="swiper-button-next"></div>
-
-  <!-- If we need scrollbar -->
-  <div class="swiper-scrollbar"></div>
+  <h2 class="text-center">
+    Weather related images
+  </h2>
 </div>
+
+<!-- Slider main container -->
+  <div class="wrap-container">
+    <!-- Additional required wrapper -->
+    <div class="imageContainer">
+      <!-- Slides -->
+      {{#each images}}
+        <img src="{{imgUrl}}" alt="image"  class="swiper-slide p-10"/>
+      {{/each}}
+    </div>
+  </div>
+
 </div>

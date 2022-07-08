@@ -13,7 +13,6 @@ const uploadImage = async (req, res) => {
     const {title, description} = req.body; 
     const image = req.file; 
     try {
-        console.log(image.path)
         const response = await cloudinary.v2.uploader.upload(image.path); 
         const imageNew = new wheaterImg({
             title,
@@ -21,7 +20,6 @@ const uploadImage = async (req, res) => {
             imgUrl: response.secure_url,
             imgID: response.public_id,
         })
-        console.log("Lo guarde")
         await imageNew.save(); 
         await fs.unlink(image.path); 
         res.send("Image is uploaded"); 
@@ -39,4 +37,17 @@ const getDBimages = async (req, res) => {
     }
 
 }
-module.exports = { uploadImage, getDBimages }; 
+
+const deleteIMG = async (req,res) => {
+    try{
+        const {imgID} = req.params; 
+        const imgDelete = await wheaterImg.findByIdAndDelete(imgID); 
+        // Delete to cloudinary
+        await cloudinary.v2.uploader.destroy(imgDelete.imgID); 
+        res.redirect("/whaterApp/displayImages")
+    }catch(e){
+        console.error(e); 
+        res.send("Something went wrong")
+    }
+}
+module.exports = { uploadImage, getDBimages, deleteIMG}; 

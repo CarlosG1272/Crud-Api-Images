@@ -51,6 +51,9 @@ app.set("view engine", ".hbs")
 
 
 // Images Routes
+app.get("/", (req,res)=> {
+    res.render("index")
+})
 app.use("/whaterApp", wheaterApp)
 
 

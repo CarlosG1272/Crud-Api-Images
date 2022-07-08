@@ -1,23 +1,51 @@
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <form action="/whaterApp/imagesForm" method="POST" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Image name</label>
+                    <input type="text" class="form-control" id="exampleFormControlInput1" name="title" placeholder="summer...">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Description</label>
+                    <textarea class="form-control" name="description" rows="3"></textarea>
+                </div>
 
-<form action="/whaterApp/imagesForm" method="POST" enctype="multipart/form-data">
-    <div class="mb-3">
-        <label for="exampleFormControlInput1" class="form-label">Image name</label>
-        <input type="text" class="form-control" id="exampleFormControlInput1" name="title" placeholder="summer...">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+                </div>
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="inputGroupFile01"
+                    aria-describedby="inputGroupFileAddon01" name="image">
+                    <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                </div>
+                <div class="col-auto">
+                    <button type="submit" class="btn btn-primary mb-3">Submit image</button>
+                </div>
+            </form>
+        </div>
+        <div class="col">
+            <table>
+                <thead>
+                    <tr>
+                        <th class="p-5">Title</th>
+                        <th  class="p-5">Description</th>
+                        <th  class="p-5">Operations</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each images}}
+                        <tr>
+                            <td>{{title}}</td>
+                            <td>{{description}}</td>
+                            <td>
+                                <a href="{{imgUrl}}" target="_blank"class="btn btn-primary">See</a>
+                                <a href="/whaterApp/image/delete/{{_id}}" rel="noopener noreferrer" class="btn btn-danger">Delete</a>
+                            </td>
+                        </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
     </div>
-    <div class="mb-3">
-        <label class="form-label">Description</label>
-        <textarea class="form-control" name="description" rows="3"></textarea>
-    </div>
-
-    <div class="input-group-prepend">
-        <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
-    </div>
-    <div class="custom-file">
-        <input type="file" class="custom-file-input" id="inputGroupFile01"
-        aria-describedby="inputGroupFileAddon01" name="image">
-        <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
-    </div>
-    <div class="col-auto">
-        <button type="submit" class="btn btn-primary mb-3">Submit image</button>
-    </div>
-</form>
+</div>
